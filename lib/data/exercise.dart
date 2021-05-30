@@ -2,6 +2,11 @@ import 'package:gym_port/exercise.dart';
 
 final exercises1 = [
   Exercise(
+    name: 'Bench press',
+    duration: Duration(seconds: 30),
+    noOfReps: 5,
+    videoUrl: 'assets/abc.mp4'),
+  Exercise(
       name: 'Burpees',
       duration: Duration(seconds: 30),
       noOfReps: 12,

@@ -39,9 +39,9 @@ class _ExercisesWidgetState extends State<ExercisesWidget> {
       children: exerciseSets
           .where((element) => element.exerciseType == selectedType)
           .map(
-            (exerciseSet3) => Container(
+            (exerciseSet) => Container(
             margin: const EdgeInsets.symmetric(vertical: 10),
-              child: ExerciseSetWidget(exerciseSet: exerciseSet3,)),
+              child: ExerciseSetWidget(exerciseSet: exerciseSet,)),
           )
           .toList(),
     ),
