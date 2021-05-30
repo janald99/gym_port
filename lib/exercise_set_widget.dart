@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'Exercise_set.dart';
+import 'exercise_set.dart';
 
 class ExerciseSetWidget extends StatelessWidget {
   final ExerciseSet exerciseSet;
@@ -38,6 +38,7 @@ class ExerciseSetWidget extends StatelessWidget {
         ),
         SizedBox(height: 10),
         Text('$exercises Exercises $minutes Mins'),
+
       ],
     );
   }

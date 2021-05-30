@@ -1,6 +1,7 @@
-import 'package:gym_port/exercise_set_widget.dart';
-import 'package:gym_port/exercise_set.dart';
-import 'package:gym_port/data/exercise_sets.dart';
+import 'data/exercise_sets.dart';
+import 'exercise_set_widget.dart';
+import 'exercise_set.dart';
+//import 'package:gym_port/data/exercise_sets.dart';
 import 'package:flutter/material.dart';
 
 class ExercisesWidget extends StatefulWidget {
@@ -26,7 +27,7 @@ class _ExercisesWidgetState extends State<ExercisesWidget> {
               SizedBox(height: 8),
               buildDifficultyLevel(),
               SizedBox(height: 8,), //spacing
-              //buildWorkouts(),
+              buildWorkouts(),
             ],
           ),
         ),
@@ -38,10 +39,10 @@ class _ExercisesWidgetState extends State<ExercisesWidget> {
       children: exerciseSets
           .where((element) => element.exerciseType == selectedType)
           .map(
-            (exerciseSet) => Container(
+            (exerciseSet3) => Container(
             margin: const EdgeInsets.symmetric(vertical: 10),
-            ),
-      )
+              child: ExerciseSetWidget(exerciseSet: exerciseSet3,)),
+          )
           .toList(),
     ),
   );
