@@ -1,12 +1,12 @@
 import 'package:flutter/cupertino.dart';
-//import video player package here
+import 'package:video_player/video_player.dart';
 
 class Exercise {
   final String name;
   final Duration duration;
   final int noOfReps;
   final String videoUrl;
-  //VideoPlayerController controller;
+  late VideoPlayerController controller;
 
   Exercise({
     required this.name,
