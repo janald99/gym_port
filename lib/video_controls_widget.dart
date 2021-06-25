@@ -12,35 +12,35 @@ class VideoControlsWidget extends StatelessWidget {
     required this.onRewindVideo,
     required this.onNextVideo,
     required this.onTogglePlaying,
-});
+  });
 
   @override
   Widget build(BuildContext context) => Container(
-    decoration: BoxDecoration(
-      borderRadius: BorderRadius.circular(16),
-      color: Colors.white.withOpacity(0.95),
-    ),
-    height: 142,
-    child: Column(
-      mainAxisAlignment: MainAxisAlignment.spaceAround,
-      children: [
-        Row(
+        decoration: BoxDecoration(
+          borderRadius: BorderRadius.circular(16),
+          color: Colors.white.withOpacity(0.95),
+        ),
+        height: 142,
+        child: Column(
           mainAxisAlignment: MainAxisAlignment.spaceAround,
           children: [
-            buildText(
-              title: 'Duration',
-              value: '${exercise.duration.inSeconds} Seconds',
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceAround,
+              children: [
+                buildText(
+                  title: 'Duration',
+                  value: '${exercise.restDuration.inSeconds} Seconds',
+                ),
+                buildText(
+                  title: 'Reps',
+                  value: '${exercise.noOfReps} times',
+                ),
+              ],
             ),
-            buildText(
-              title: 'Reps',
-              value: '${exercise.noOfReps} times',
-            ),
+            buildButtons(context),
           ],
         ),
-        buildButtons(context),
-      ],
-    ),
-  );
+      );
 
   Widget buildText({
     required String title,
@@ -61,27 +61,27 @@ class VideoControlsWidget extends StatelessWidget {
       );
 
   Widget buildButtons(BuildContext context) => Row(
-    mainAxisAlignment: MainAxisAlignment.spaceAround,
-    children: [
-      IconButton(
-        icon: Icon(
-          Icons.fast_rewind,
-          color: Colors.black87,
-          size: 32,
-        ),
-        onPressed: onRewindVideo,
-      ),
-      buildPlayButton(context),
-      IconButton(
-        icon: Icon(
-          Icons.fast_forward,
-          color: Colors.black87,
-          size: 32,
-        ),
-        onPressed: onNextVideo,
-      ),
-    ],
-  );
+        mainAxisAlignment: MainAxisAlignment.spaceAround,
+        children: [
+          IconButton(
+            icon: Icon(
+              Icons.fast_rewind,
+              color: Colors.black87,
+              size: 32,
+            ),
+            onPressed: onRewindVideo,
+          ),
+          buildPlayButton(context),
+          IconButton(
+            icon: Icon(
+              Icons.fast_forward,
+              color: Colors.black87,
+              size: 32,
+            ),
+            onPressed: onNextVideo,
+          ),
+        ],
+      );
 
   Widget buildPlayButton(BuildContext context) {
     final isLoading =
@@ -105,10 +105,10 @@ class VideoControlsWidget extends StatelessWidget {
   }
 
   Widget buildButton(
-      BuildContext context, {
-        required Widget icon,
-        required VoidCallback onClicked,
-      }) =>
+    BuildContext context, {
+    required Widget icon,
+    required VoidCallback onClicked,
+  }) =>
       GestureDetector(
         onTap: onClicked,
         child: Container(
@@ -129,5 +129,4 @@ class VideoControlsWidget extends StatelessWidget {
           ),
         ),
       );
-
 }

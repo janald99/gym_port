@@ -36,7 +36,7 @@ class ExerciseSet {
   String get totalDuration {
     final Duration duration = exercises.fold(
       Duration.zero,
-        (previous, element) => previous + element.duration,
+        (previous, element) => previous + element.restDuration,
     );
 
     return duration.inMinutes.toString();

@@ -1,6 +1,6 @@
 import 'package:gym_port/exercise.dart';
 
-final exercises1 = [
+/*final exercises1 = [
   Exercise(
     name: 'Bench press',
     duration: Duration(seconds: 30),
@@ -160,4 +160,26 @@ final exercises4 = [
       duration: Duration(seconds: 30),
       noOfReps: 15,
       videoUrl: 'assets/burpees.mp4'),
-];
+      ];*/
+  final exercises1 = [
+    Exercise(
+        name: 'Stronglifts 5x5',
+        restDuration: Duration(seconds: 120),
+        noOfSets: 5,
+        noOfReps: 5,
+        videoUrl: 'assets/Stronglifts5x5.mp4.mp4'),
+    Exercise(
+        name: 'Bench',
+        restDuration: Duration(seconds: 120),
+        noOfSets: 5,
+        noOfReps: 5,
+        videoUrl: 'videoUrl'),
+    Exercise(
+        name: 'Deadlifts',
+        restDuration: Duration(seconds: 120),
+        noOfSets: 5,
+        noOfReps: 5,
+        videoUrl: 'videoUrl'),
+  ];
+
+
