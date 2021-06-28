@@ -169,13 +169,13 @@ final exercises4 = [
         noOfReps: 5,
         videoUrl: 'assets/Stronglifts5x5.mp4.mp4'),
     Exercise(
-        name: 'Bench',
+        name: 'Texas Method',
         restDuration: Duration(seconds: 120),
         noOfSets: 5,
         noOfReps: 5,
-        videoUrl: 'videoUrl'),
+        videoUrl: 'assets/Texas_Method.mp4'),
     Exercise(
-        name: 'Deadlifts',
+        name: 'Smolov',
         restDuration: Duration(seconds: 120),
         noOfSets: 5,
         noOfReps: 5,

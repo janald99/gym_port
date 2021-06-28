@@ -116,7 +116,7 @@ class VideoControlsWidget extends StatelessWidget {
             shape: BoxShape.circle,
             boxShadow: <BoxShadow>[
               BoxShadow(
-                color: Color(0xFFff6369),
+                color: Color(0xffff6369),
                 blurRadius: 8,
                 offset: Offset(2, 2),
               ),
