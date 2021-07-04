@@ -3,6 +3,7 @@ import 'dart:ui';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_keyboard_visibility/flutter_keyboard_visibility.dart';
+import 'package:gym_port/homepage.dart';
 
 void main() {
   runApp(MyApp());
@@ -189,6 +190,36 @@ class _LoginPageState extends State<LoginPage> {
                     child: Image.asset("assets/GYMPORT FRONTPAGE.png"),
                 )),
                 Container(
+                    child: GestureDetector(
+                      onTap: () {
+                        Navigator.of(context)
+                        .push(
+                          MaterialPageRoute(builder: (context) => HomePage())
+                        );
+                        setState(() {
+                        });
+                      },
+                      child: Container(
+                        margin: EdgeInsets.all(32),
+                        padding: EdgeInsets.all(1),
+                        width: double.infinity,
+                        decoration: BoxDecoration(
+                          color: Colors.blue,
+                          borderRadius: BorderRadius.circular(50),
+                        ),
+                        child: Center(
+                          child: Text(
+                            "Guest Login (temp)",
+                            style: TextStyle(
+                              color: Colors.white,
+                              fontSize: 16,
+                            ),
+                          ),
+                        ),
+                      ),
+                    )
+                ),
+                Container(
                   child: GestureDetector(
                     onTap: () {
                       setState(() {
@@ -202,6 +233,7 @@ class _LoginPageState extends State<LoginPage> {
                     child: Container(
                       margin: EdgeInsets.all(32),
                       padding: EdgeInsets.all(20),
+
                       width: double.infinity,
                       decoration: BoxDecoration(
                         color: Colors.blue,
@@ -278,7 +310,7 @@ class _LoginPageState extends State<LoginPage> {
                       });
                     },
                     child: OutlineBtn(
-                      btnText: "Create New Account"
+                      btnText: "Create an account"
                     ),
                   )
                 ],
