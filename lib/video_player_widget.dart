@@ -34,6 +34,13 @@ class _VideoPlayerWidgetState extends State<VideoPlayerWidget> {
   }
 
   @override
+  void dispose() {
+    controller.dispose();
+
+    super.dispose();
+  }
+
+  @override
   Widget build(BuildContext context) => SizedBox.expand(// expand video to the whole page
     child: controller.value.isInitialized
         ? VideoPlayer(controller)
