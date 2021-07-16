@@ -7,6 +7,21 @@ import 'package:gym_port/homepage.dart';
 import 'package:parse_server_sdk_flutter/parse_server_sdk.dart';
 
 void main() async {
+  // final keyApplicationId = '4nYzZ0FJBMMcxFLpf9nnMujpK0ekRi8dm0fpmv8d';
+  // final keyClientKey = 'BK0yQdG1mthAFlumUidzUbkfziLrJdKNLJz5XxU8';
+  // final keyParseServerUrl = 'https://parseapi.back4app.com';
+  //
+  // await Parse().initialize(keyApplicationId, keyParseServerUrl,
+  //     clientKey: keyClientKey, debug: true);
+  //
+  //
+  // var firstObject = ParseObject('FirstClass')
+  //   ..set(
+  //       'message', 'Hey ! First message from Flutter. Parse is now connected');
+  // await firstObject.save();
+  // print('done');
+  WidgetsFlutterBinding.ensureInitialized();
+
   final keyApplicationId = '4nYzZ0FJBMMcxFLpf9nnMujpK0ekRi8dm0fpmv8d';
   final keyClientKey = 'BK0yQdG1mthAFlumUidzUbkfziLrJdKNLJz5XxU8';
   final keyParseServerUrl = 'https://parseapi.back4app.com';
@@ -14,19 +29,27 @@ void main() async {
   await Parse().initialize(keyApplicationId, keyParseServerUrl,
       clientKey: keyClientKey, debug: true);
 
-
-  var firstObject = ParseObject('FirstClass')
-    ..set(
-        'message', 'Hey ! First message from Flutter. Parse is now connected');
-  await firstObject.save();
+  doCreateData("hi","bye");
   runApp(MyApp());
-  print('done');
+
+
   //runApp(MyApp());
 }
+
+void doCreateData(String userId, String password) async {
+  // Add Profile objects and create table
+  var profile = ParseObject('LoginInformation');
+  profile.set('UserId', userId);
+  profile.set('Password', password);
+  await profile.save();
+
+}
+
 
 // void main() {
 //   runApp(MyApp());
 // }
+
 
 class MyApp extends StatelessWidget {
   @override
@@ -73,12 +96,21 @@ class _LoginPageState extends State<LoginPage> {
 
   bool _keyboardVisible = false;
 
+  final userIdController = TextEditingController();
+  final passwordController = TextEditingController();
+  GlobalKey<FormState> formkey = GlobalKey<FormState>();
 
+  @override
+  void dispose() {
+    // Clean up the controller when the widget is disposed.
+    passwordController.dispose();
+    userIdController.dispose();
+    super.dispose();
+  }
 
   @override
   void initState() {
     super.initState();
-
     var keyboardVisibilityController = KeyboardVisibilityController();
     // Query
     print('Keyboard visibility direct query: ${keyboardVisibilityController.isVisible}');
@@ -89,6 +121,14 @@ class _LoginPageState extends State<LoginPage> {
         _keyboardVisible = visible;
       });
     });
+  }
+
+  void validate() {
+    if (formkey.currentState!.validate()) {
+      print("Validated");
+    } else {
+      print("Not validated");
+    }
   }
 
   @override
@@ -272,7 +312,7 @@ class _LoginPageState extends State<LoginPage> {
               ),
             ],
           )),
-        ),
+        ),// Use this for Page 1
         AnimatedContainer(
           padding: EdgeInsets.all(32),
           width: _loginWidth,
@@ -336,7 +376,7 @@ class _LoginPageState extends State<LoginPage> {
               ),
             ],
           )
-        ),
+        ),// Use this for Page 2
         AnimatedContainer(
           height: _registerHeight,
           padding: EdgeInsets.all(32),
@@ -368,22 +408,64 @@ class _LoginPageState extends State<LoginPage> {
                           )
                         ),
                       ),
-                      InputWithIcon(
-                        icon: Icons.email,
-                        hint: "Enter Email...",
+                      TextFormField(
+                        decoration: InputDecoration(
+                          icon : Icon(Icons.email),
+                          hintText : "Enter Email...",
+                        ),
+                        controller: userIdController,
+                        validator: (value) {
+                          if (value!.isEmpty) {
+                            return "Required";
+                          } else {
+                            return null;
+                          }
+                        },
+
+                        //autofocus: true,
                       ),
                       SizedBox(height: 20),
-                      InputWithIcon(
-                        icon: Icons.vpn_key,
-                        hint: "Enter Password...",
+                      Form(
+                        child: TextFormField(
+                          decoration: InputDecoration(
+                            icon : Icon(Icons.vpn_key),
+                            hintText : "Enter Password...",
+                          ),
+                          controller: passwordController,
+                          validator: (value) {
+                            if (value!.isEmpty) {
+                              return "Required";
+                            } else {
+                              return null;
+                            }
+                          },
+                          //autofocus: true,
+                        ),
                       ),
                       SizedBox(
-                        height: 20,
+                        height: 60,
                       )
                     ],
                   ),
-                  PrimaryButton(
-                    btnText: "Create Account",
+                  GestureDetector(
+                    onTap: () {
+                      //validate();
+                      if (userIdController.text.isNotEmpty && passwordController.text.isNotEmpty) {
+                        doCreateData(userIdController.text, passwordController.text);
+                        Navigator.of(context)
+                            .push(
+                            MaterialPageRoute(builder: (context) => HomePage())
+                        );
+                      } else {
+                        showAlertDialog(context);
+                      }
+                      // setState(() {
+                      //   _pageState = 1;
+                      // });
+                    },
+                    child: PrimaryButton(
+                      btnText: "Create Account",
+                    ),
                   ),
                   SizedBox(
                     height: 20,
@@ -402,7 +484,7 @@ class _LoginPageState extends State<LoginPage> {
               ),
             ],
           )
-        )
+        ),// Use this for Page 3
       ],
     );
   }
@@ -517,4 +599,31 @@ class _OutlineBtnState extends State<OutlineBtn> {
         )
     );
   }
+}
+
+showAlertDialog(BuildContext context) {
+  // Create button
+  Widget okButton = TextButton(
+    child: Text("OK"),
+    onPressed: () {
+      Navigator.of(context).pop();
+    },
+  );
+
+  // Create AlertDialog
+  AlertDialog alert = AlertDialog(
+    //title: Text(""),
+    content: Text("Invalid Email or password"),
+    actions: [
+      okButton,
+    ],
+  );
+
+  // show the dialog
+  showDialog(
+    context: context,
+    builder: (BuildContext context) {
+      return alert;
+    },
+  );
 }
