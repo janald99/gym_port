@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "686821494188",
+    "project_id": "gymport-b5515",
+    "storage_bucket": "gymport-b5515.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:686821494188:android:c01c55911262c2dae6be09",
+        "android_client_info": {
+          "package_name": "gymport.gymport"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "686821494188-2vjbkoos97sofippkf90vd129actkmjq.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAJFcsuO6AlTXYO3zYhbsEEtQ3eqTvhckk"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "686821494188-2vjbkoos97sofippkf90vd129actkmjq.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

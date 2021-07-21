@@ -20,7 +20,9 @@ class FeedbackPage extends StatelessWidget {
               ),
             ),
             leading: IconButton(
-              onPressed: () {},
+              onPressed: () {
+                Navigator.of(context).pop();
+              },
               icon: Icon(Icons.arrow_back),
             )),
         body: Padding(

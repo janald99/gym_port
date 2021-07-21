@@ -38,12 +38,15 @@ void main() async {
 
 void doCreateData(String userId, String password) async {
   // Add Profile objects and create table
-  var profile = ParseObject('LoginInformation');
-  profile.set('UserId', userId);
-  profile.set('Password', password);
-  await profile.save();
-
+  // var profile = ParseObject('LoginInformation');
+  // profile.set('UserId', userId);
+  // profile.set('Password', password);
+  // await profile.save();
+  ParseUser user = new ParseUser(userId, password, null);//, "");
+  await user.save();
 }
+
+
 
 
 // void main() {
@@ -73,7 +76,11 @@ class LoginPage extends StatefulWidget {
   _LoginPageState createState() => _LoginPageState();
 }
 
+
+
 class _LoginPageState extends State<LoginPage> {
+
+
 
   int _pageState = 0;
 
@@ -343,21 +350,54 @@ class _LoginPageState extends State<LoginPage> {
                         )
                     ),
                   ),
-                  InputWithIcon(
-                    icon: Icons.email,
-                    hint: "Enter Email...",
+                  TextFormField(
+                    decoration: InputDecoration(
+                      icon : Icon(Icons.email),
+                      hintText : "Enter Email...",
+                    ),
+                    controller: userIdController,
+                    validator: (value) {
+                      if (value!.isEmpty) {
+                        return "Required";
+                      } else {
+                        return null;
+                      }
+                    },
+
+                    //autofocus: true,
                   ),
                   SizedBox(height: 20),
-                  InputWithIcon(
-                    icon: Icons.vpn_key,
-                    hint: "Enter Password...",
-                  )
+                  Form(
+                    child: TextFormField(
+                      decoration: InputDecoration(
+                        icon : Icon(Icons.vpn_key),
+                        hintText : "Enter Password...",
+                      ),
+                      controller: passwordController,
+                      validator: (value) {
+                        if (value!.isEmpty) {
+                          return "Required";
+                        } else {
+                          return null;
+                        }
+                      },
+                      //autofocus: true,
+                    ),
+                  ),
                 ],
               ),
               Column(
                 children: [
-                  PrimaryButton(
-                    btnText: "Login",
+                  GestureDetector(
+                    onTap: () {
+                      setState(() {
+                      });
+                      //if () //TODO
+                      
+                    },
+                    child: PrimaryButton(
+                      btnText: "Login",
+                    ),
                   ),
                   SizedBox(
                     height: 20,

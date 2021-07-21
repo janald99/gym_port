@@ -1,6 +1,7 @@
 import 'package:gym_port/exercises_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:gym_port/feedbackpage.dart';
+import 'package:gym_port/sidebar.dart';
 
 import 'exercises_widget.dart';
 
@@ -8,9 +9,10 @@ class HomePage extends StatelessWidget {
   @override
   Widget build(BuildContext context) => Scaffold(
           body: CustomScrollView(
-        physics: BouncingScrollPhysics(),
-        slivers: [
+          physics: BouncingScrollPhysics(),
+          slivers: [
           buildAppBar(context),
+          //AppContainer()
           ExercisesWidget(),
         ],
       ));
@@ -23,7 +25,7 @@ class HomePage extends StatelessWidget {
           icon: Icon(Icons.menu),
           onPressed: () {
             Navigator.of(context)
-                .push(MaterialPageRoute(builder: (context) => FeedbackPage()));
+                .push(MaterialPageRoute(builder: (context) => SideBar()));
           },
         ),
         actions: [
@@ -31,4 +33,6 @@ class HomePage extends StatelessWidget {
           SizedBox(width: 12),
         ],
       );
+
+
 }
