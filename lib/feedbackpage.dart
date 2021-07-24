@@ -51,7 +51,7 @@ class FeedbackPage extends StatelessWidget {
                             child: Text(
                               "SUBMIT",
                               style: TextStyle(
-                                color: Colors.white,
+                                color: Colors.red,
                                 fontWeight: FontWeight.bold,
                               ),
                             )))
