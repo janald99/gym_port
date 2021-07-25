@@ -3,7 +3,7 @@ import 'package:gym_port/favourites_page.dart';
 import 'package:gym_port/feedbackpage.dart';
 import 'package:gym_port/homepage.dart';
 import 'package:gym_port/user_page.dart';
-import 'package:gym_port/people_page.dart';
+import 'package:gym_port/diet_page.dart';
 
 class NavigationDrawerWidget extends StatelessWidget {
   final padding = EdgeInsets.symmetric(horizontal: 20);
@@ -25,7 +25,7 @@ class NavigationDrawerWidget extends StatelessWidget {
               email: email,
               onClicked: () => Navigator.of(context).push(MaterialPageRoute(
                 builder: (context) => UserPage(
-                  name: 'Sarah Abs',
+                  name: 'MyUsername',
                   urlImage: urlImage,
                 ),
               )),
@@ -44,13 +44,13 @@ class NavigationDrawerWidget extends StatelessWidget {
                   ),
                   const SizedBox(height: 16),
                   buildMenuItem(
-                    text: 'Feedback',
+                    text: 'Diet plan',
                     icon: Icons.favorite_border,
                     onClicked: () => selectedItem(context, 1),
                   ),
                   const SizedBox(height: 16),
                   buildMenuItem(
-                    text: 'Diet Plans',
+                    text: 'Feedback',
                     icon: Icons.workspaces_outline,
                     onClicked: () => selectedItem(context, 2),
                   ),
@@ -173,7 +173,17 @@ class NavigationDrawerWidget extends StatelessWidget {
         break;
       case 1:
         Navigator.of(context).push(MaterialPageRoute(
+          builder: (context) => FeedbackPage(), //edit to be diet
+        ));
+        break;
+      case 2:
+        Navigator.of(context).push(MaterialPageRoute(
           builder: (context) => FeedbackPage(),
+        ));
+        break;
+      case 3:
+        Navigator.of(context).push(MaterialPageRoute(
+          builder: (context) => HomePage(), //edit to logoutpage
         ));
         break;
     }
