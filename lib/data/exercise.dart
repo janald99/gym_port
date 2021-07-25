@@ -216,11 +216,11 @@ final exercises5 = [
 ];
 final exercises6 = [
   Exercise(
-      name: 'Texas Method',
+      name: 'Daily Undulating Periodization',
       restDuration: Duration(seconds: 120),
       noOfSets: 5,
       noOfReps: 5,
-      videoUrl: 'assets/Texas_Method.mp4'),
+      videoUrl: 'assets/Advanced Powerlifting Programming - Daily Undulating Periodization.mp4'),
 ];
 
 
