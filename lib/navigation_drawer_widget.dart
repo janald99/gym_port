@@ -178,4 +178,4 @@ class NavigationDrawerWidget extends StatelessWidget {
         break;
     }
   }
-}j
+}
