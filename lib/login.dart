@@ -4,7 +4,10 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_keyboard_visibility/flutter_keyboard_visibility.dart';
 import 'package:gym_port/homepage.dart';
+import 'package:gym_port/navigation_drawer_widget.dart';
+import 'package:gym_port/sidebar.dart';
 import 'package:parse_server_sdk_flutter/parse_server_sdk.dart';
+
 
 void main() async {
   // final keyApplicationId = '4nYzZ0FJBMMcxFLpf9nnMujpK0ekRi8dm0fpmv8d';
@@ -42,8 +45,10 @@ void doCreateData(String userId, String password) async {
   // profile.set('UserId', userId);
   // profile.set('Password', password);
   // await profile.save();
+
   ParseUser user = new ParseUser(userId, password, null);//, "");
-  await user.save();
+  await user.signUp(allowWithoutEmail: true);
+  //await user.save();
 }
 
 
@@ -81,7 +86,6 @@ class LoginPage extends StatefulWidget {
 class _LoginPageState extends State<LoginPage> {
 
 
-
   int _pageState = 0;
 
   var _backgroundColor = Colors.white;
@@ -106,6 +110,7 @@ class _LoginPageState extends State<LoginPage> {
   final userIdController = TextEditingController();
   final passwordController = TextEditingController();
   GlobalKey<FormState> formkey = GlobalKey<FormState>();
+  bool isLoggedIn = false;
 
   @override
   void dispose() {
@@ -351,6 +356,8 @@ class _LoginPageState extends State<LoginPage> {
                     ),
                   ),
                   TextFormField(
+                    enabled: !isLoggedIn,
+                    autocorrect: false,
                     decoration: InputDecoration(
                       icon : Icon(Icons.email),
                       hintText : "Enter Email...",
@@ -369,6 +376,8 @@ class _LoginPageState extends State<LoginPage> {
                   SizedBox(height: 20),
                   Form(
                     child: TextFormField(
+                      enabled: !isLoggedIn,
+                      autocorrect: false,
                       decoration: InputDecoration(
                         icon : Icon(Icons.vpn_key),
                         hintText : "Enter Password...",
@@ -390,13 +399,22 @@ class _LoginPageState extends State<LoginPage> {
                 children: [
                   GestureDetector(
                     onTap: () {
+                      //ParseUser.keyUsername
+                      //ParseQuery<ParseObject> query = ParseQuery.getQuery("SoccerPlayers");
+                      //ParseQuery<ParseObject> query = ParseQuery.getQuery("User");
+                      //query.whereEqualTo("objectId", "QHjRWwgEtd");
                       setState(() {
                       });
                       //if () //TODO
-                      
+                      //showSuccess(context);
+                      if (!isLoggedIn) {
+                        doUserLogin();
+                      }
+
                     },
                     child: PrimaryButton(
                       btnText: "Login",
+
                     ),
                   ),
                   SizedBox(
@@ -404,6 +422,7 @@ class _LoginPageState extends State<LoginPage> {
                   ),
                   GestureDetector(
                     onTap: () {
+                      //dispose();
                       setState(() {
                         _pageState = 2;
                       });
@@ -491,11 +510,16 @@ class _LoginPageState extends State<LoginPage> {
                     onTap: () {
                       //validate();
                       if (userIdController.text.isNotEmpty && passwordController.text.isNotEmpty) {
-                        doCreateData(userIdController.text, passwordController.text);
-                        Navigator.of(context)
-                            .push(
-                            MaterialPageRoute(builder: (context) => HomePage())
-                        );
+                        bool emailValid = RegExp(r"^[a-zA-Z0-9.a-zA-Z0-9.!#$%&'*+-/=?^_`{|}~]+@[a-zA-Z0-9]+\.[a-zA-Z]+").hasMatch(userIdController.text);
+                        print(emailValid);
+                        if (emailValid) {
+                          doCreateData(userIdController.text, passwordController.text);
+                          Navigator.of(context)
+                              .push(
+                              MaterialPageRoute(builder: (context) => HomePage()));
+                        } else {
+                          showAlertDialog(context);
+                        }
                       } else {
                         showAlertDialog(context);
                       }
@@ -527,6 +551,31 @@ class _LoginPageState extends State<LoginPage> {
         ),// Use this for Page 3
       ],
     );
+  }
+  void doUserLogin() async {
+    final username = userIdController.text.trim();
+    final password = passwordController.text.trim();
+
+    final user = ParseUser(username, password, null);
+
+    var response = await user.login();
+
+    if (response.success) {
+      isLoggedIn = true;
+      showSuccess(context);
+      Navigator.of(context)
+          .push(
+          MaterialPageRoute(builder: (context) => HomePage()));
+      setState(() {
+      });
+    } else {
+      showError(context);
+    }
+  }
+
+
+  void doUserLogout() async {
+
   }
 }
 
@@ -667,3 +716,60 @@ showAlertDialog(BuildContext context) {
     },
   );
 }
+
+showSuccess(BuildContext context) {
+  // Create button
+  Widget okButton = TextButton(
+    child: Text("OK"),
+    onPressed: () {
+      Navigator.of(context).pop();
+    },
+  );
+
+  // Create AlertDialog
+  AlertDialog alert = AlertDialog(
+    //title: Text(""),
+    content: Text("Success!"),
+    actions: [
+      okButton,
+    ],
+  );
+
+  // show the dialog
+  showDialog(
+    context: context,
+    builder: (BuildContext context) {
+      return alert;
+    },
+  );
+}
+
+showError(BuildContext context) {
+  // Create button
+  Widget okButton = TextButton(
+    child: Text("Error!"),
+    onPressed: () {
+      Navigator.of(context).pop();
+    },
+  );
+
+  // Create AlertDialog
+  AlertDialog alert = AlertDialog(
+    //title: Text(""),
+    content: Text("Invalid Email or Password!"),
+    actions: [
+      okButton,
+    ],
+  );
+
+  // show the dialog
+  showDialog(
+    context: context,
+    builder: (BuildContext context) {
+      return alert;
+    },
+  );
+}
+
+
+
