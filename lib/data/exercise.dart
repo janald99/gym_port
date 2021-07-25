@@ -168,18 +168,60 @@ final exercises4 = [
         noOfSets: 5,
         noOfReps: 5,
         videoUrl: 'assets/Stronglifts5x5.mp4.mp4'),
-    Exercise(
-        name: 'Texas Method',
-        restDuration: Duration(seconds: 120),
-        noOfSets: 5,
-        noOfReps: 5,
-        videoUrl: 'assets/Texas_Method.mp4'),
-    Exercise(
-        name: 'Smolov',
-        restDuration: Duration(seconds: 120),
-        noOfSets: 5,
-        noOfReps: 5,
-        videoUrl: 'videoUrl'),
+    // Exercise(
+    //     name: 'Texas Method',
+    //     restDuration: Duration(seconds: 120),
+    //     noOfSets: 5,
+    //     noOfReps: 5,
+    //     videoUrl: 'assets/Texas_Method.mp4'),
+    // Exercise(
+    //     name: 'Smolov',
+    //     restDuration: Duration(seconds: 120),
+    //     noOfSets: 5,
+    //     noOfReps: 5,
+    //     videoUrl: 'videoUrl'),
   ];
+final exercises2 = [
+  Exercise(
+      name: 'Texas Method',
+      restDuration: Duration(seconds: 120),
+      noOfSets: 5,
+      noOfReps: 5,
+      videoUrl: 'assets/Texas_Method.mp4'),
+];
+final exercises3 = [
+  Exercise(
+      name: 'Smolov Jr',
+      restDuration: Duration(seconds: 120),
+      noOfSets: 5,
+      noOfReps: 5,
+      videoUrl: 'assets/The DREADED Smolov EXPLAINED_ Review of the Plateau-Busting High Frequency Russian Squat Routine.mp4'),
+];
+final exercises4 = [
+  Exercise(
+      name: 'Wendler\'s 5/3/1',
+      restDuration: Duration(seconds: 120),
+      noOfSets: 5,
+      noOfReps: 5,
+      videoUrl: 'assets/Ultimate System for Strength - [Wendler 5 3 1 Review].mp4'),
+];
+
+final exercises5 = [
+  Exercise(
+      name: 'Smolov',
+      restDuration: Duration(seconds: 120),
+      noOfSets: 5,
+      noOfReps: 5,
+      videoUrl: 'assets/The DREADED Smolov EXPLAINED_ Review of the Plateau-Busting High Frequency Russian Squat Routine.mp4'),
+];
+final exercises6 = [
+  Exercise(
+      name: 'Texas Method',
+      restDuration: Duration(seconds: 120),
+      noOfSets: 5,
+      noOfReps: 5,
+      videoUrl: 'assets/Texas_Method.mp4'),
+];
+
 
 
