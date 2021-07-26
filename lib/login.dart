@@ -7,7 +7,7 @@ import 'package:gym_port/homepage.dart';
 import 'package:gym_port/navigation_drawer_widget.dart';
 import 'package:gym_port/sidebar.dart';
 import 'package:parse_server_sdk_flutter/parse_server_sdk.dart';
-
+import 'package:gym_port/globals.dart' as globals;
 
 void main() async {
   // final keyApplicationId = '4nYzZ0FJBMMcxFLpf9nnMujpK0ekRi8dm0fpmv8d';
@@ -34,7 +34,6 @@ void main() async {
 
   //doCreateData("hi","bye");
   runApp(MyApp());
-
 
   //runApp(MyApp());
 }
@@ -563,6 +562,7 @@ class _LoginPageState extends State<LoginPage> {
     if (response.success) {
       isLoggedIn = true;
       showSuccess(context);
+
       Navigator.of(context)
           .push(
           MaterialPageRoute(builder: (context) => HomePage()));

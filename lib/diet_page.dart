@@ -4,7 +4,7 @@ import 'package:gym_port/meal.dart';
 class DietPage extends StatelessWidget {
   final Meal meal;
 
-  const DietPage({required Key key,required this.meal}) : super(key: key);
+  const DietPage({required this.meal});
 
 
   @override

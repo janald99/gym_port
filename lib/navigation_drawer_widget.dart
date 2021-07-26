@@ -2,18 +2,18 @@ import 'package:flutter/material.dart';
 import 'package:gym_port/favourites_page.dart';
 import 'package:gym_port/feedbackpage.dart';
 import 'package:gym_port/homepage.dart';
+import 'package:gym_port/meal.dart';
 import 'package:gym_port/user_page.dart';
 import 'package:gym_port/diet_page.dart';
-import 'package:gym_port/login.dart' as login;
+import 'package:gym_port/login.dart';
 
 class NavigationDrawerWidget extends StatelessWidget {
   final padding = EdgeInsets.symmetric(horizontal: 20);
   @override
   Widget build(BuildContext context) {
-    final name = 'Sarah Abs';
+    final name = 'User#173829';
     final email = '';
-    final urlImage =
-        'https://images.unsplash.com/photo-1494790108377-be9c29b29330?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=634&q=80';
+    final urlImage = 'assets/profilepic.png';
 
     return Drawer(
       child: Material(
@@ -27,7 +27,7 @@ class NavigationDrawerWidget extends StatelessWidget {
               onClicked: () => Navigator.of(context).push(MaterialPageRoute(
                 builder: (context) => UserPage(
                   name: 'MyUsername',
-                  urlImage: urlImage,
+                  urlImage: 'assets/profilepic.png',
                 ),
               )),
             ),
@@ -45,7 +45,7 @@ class NavigationDrawerWidget extends StatelessWidget {
                   ),
                   const SizedBox(height: 16),
                   buildMenuItem(
-                    text: 'Diet plan',
+                    text: 'Sample meal of the day',
                     icon: Icons.favorite_border,
                     onClicked: () => selectedItem(context, 1),
                   ),
@@ -96,7 +96,7 @@ class NavigationDrawerWidget extends StatelessWidget {
           padding: padding.add(EdgeInsets.symmetric(vertical: 40)),
           child: Row(
             children: [
-              CircleAvatar(radius: 30, backgroundImage: NetworkImage(urlImage)),
+              Container(child: CircleAvatar(radius: 30, child: Image.asset(urlImage))),
               SizedBox(width: 20),
               Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
@@ -174,7 +174,7 @@ class NavigationDrawerWidget extends StatelessWidget {
         break;
       case 1:
         Navigator.of(context).push(MaterialPageRoute(
-          builder: (context) => FeedbackPage(), //edit to be diet
+          builder: (context) => DietPage(meal: meals[0]), //edit to be diet
         ));
         break;
       case 2:
@@ -184,7 +184,7 @@ class NavigationDrawerWidget extends StatelessWidget {
         break;
       case 3:
         Navigator.of(context).push(MaterialPageRoute(
-          builder: (context) => HomePage(), //edit to logoutpage
+          builder: (context) => LoginPage(), //edit to logoutpage
         ));
         break;
     }

@@ -15,11 +15,11 @@ class Meal {
 
 final meals = [
   Meal(
-      mealTime: "BREAKFAST",
+      mealTime: "Recommended meal of the day",
       name: "Fruit Granola",
       kiloCaloriesBurnt: "271",
-      timeTaken: "10",
-      imagePath: "assets/fruit_granola.jpg",
+      timeTaken: "2",
+      imagePath: "assets/Granola.jfif",
       ingredients: [
         "1 cup of granola",
         "1 banana",
@@ -27,7 +27,7 @@ final meals = [
         "1 tbsp of honey",
       ],
       preparation:
-          '''resgg.'''),
+          '''Add all ingredients to a bowl and mix well. Serve chilled and enjoy!'''),
   Meal(
       mealTime: "DINNER",
       name: "Pesto Pasta",

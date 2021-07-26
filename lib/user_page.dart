@@ -17,11 +17,17 @@ class UserPage extends StatelessWidget {
       title: Text(name),
       centerTitle: true,
     ),
-    body: Image.network(
-      urlImage,
+    body: Image.asset(urlImage,
       width: double.infinity,
       height: double.infinity,
       fit: BoxFit.cover,
-    ),
+    )
+    ,
+    // Image.network(
+    //   urlImage,
+    //   width: double.infinity,
+    //   height: double.infinity,
+    //   fit: BoxFit.cover,
+    // ),
   );
 }
