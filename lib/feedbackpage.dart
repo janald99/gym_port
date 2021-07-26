@@ -1,7 +1,10 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:parse_server_sdk_flutter/parse_server_sdk.dart';
 
 class FeedbackPage extends StatelessWidget {
+  final feedbackController = TextEditingController();
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -49,7 +52,10 @@ class FeedbackPage extends StatelessWidget {
                   children: <Widget>[
                     Expanded(
                         child: TextButton(
-                            onPressed: () {},
+                            onPressed: () {
+                              showAlertDialog(context);
+                              saveFeedback(feedbackController.text);
+                            },
                             child: Text(
                               "SUBMIT",
                               style: TextStyle(
@@ -65,6 +71,7 @@ class FeedbackPage extends StatelessWidget {
 
   buildNumberField() {
     return TextField(
+
       style: TextStyle(
         color: Colors.black,
       ),
@@ -104,7 +111,7 @@ class FeedbackPage extends StatelessWidget {
           fontSize: 14.0,
           color: Color(0xffc5c5c5),
         ),
-        hintText: "Phone Number",
+        hintText: "Phone Number (optional)",
         border: OutlineInputBorder(),
       ),
     );
@@ -116,6 +123,7 @@ class FeedbackPage extends StatelessWidget {
         child: Stack(
           children: <Widget>[
             TextField(
+              controller: feedbackController,
               maxLines: 10,
               decoration: InputDecoration(
                   hintText: "Please briefly describe the issue",
@@ -179,4 +187,50 @@ class FeedbackPage extends StatelessWidget {
           )
         ]));
   }
+
+
+  showAlertDialog(BuildContext context) {
+    // Create button
+    Widget okButton = TextButton(
+      child: Text("OK"),
+      onPressed: () {
+        Navigator.of(context).pop();
+      },
+    );
+
+    // Create AlertDialog
+    AlertDialog alert = AlertDialog(
+      //title: Text(""),
+      content: Text("Your Feedback has been submitted!"),
+      actions: [
+        okButton,
+      ],
+    );
+
+    // show the dialog
+    showDialog(
+      context: context,
+      builder: (BuildContext context) {
+        return alert;
+      },
+    );
+  }
+
+  saveFeedback(String str) async {
+    final keyApplicationId = '4nYzZ0FJBMMcxFLpf9nnMujpK0ekRi8dm0fpmv8d';
+    final keyClientKey = 'BK0yQdG1mthAFlumUidzUbkfziLrJdKNLJz5XxU8';
+    final keyParseServerUrl = 'https://parseapi.back4app.com';
+
+    await Parse().initialize(keyApplicationId, keyParseServerUrl,
+        clientKey: keyClientKey, debug: true);
+
+
+    var firstObject = ParseObject('Feedback')
+      ..set('feedback', str);
+    await firstObject.save();
+    print('done');
+
+  }
 }
+
+

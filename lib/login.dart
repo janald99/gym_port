@@ -32,7 +32,7 @@ void main() async {
   await Parse().initialize(keyApplicationId, keyParseServerUrl,
       clientKey: keyClientKey, debug: true);
 
-  doCreateData("hi","bye");
+  //doCreateData("hi","bye");
   runApp(MyApp());
 
 

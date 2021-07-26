@@ -4,13 +4,14 @@ import 'package:gym_port/feedbackpage.dart';
 import 'package:gym_port/homepage.dart';
 import 'package:gym_port/user_page.dart';
 import 'package:gym_port/diet_page.dart';
+import 'package:gym_port/login.dart' as login;
 
 class NavigationDrawerWidget extends StatelessWidget {
   final padding = EdgeInsets.symmetric(horizontal: 20);
   @override
   Widget build(BuildContext context) {
     final name = 'Sarah Abs';
-    final email = 'sarah@abs.com';
+    final email = '';
     final urlImage =
         'https://images.unsplash.com/photo-1494790108377-be9c29b29330?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=634&q=80';
 
